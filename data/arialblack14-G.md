@@ -10,7 +10,7 @@
 | [G-1](#G1) | `++i/i++` should be `unchecked{++i}`/`unchecked{i++}` when  it is not possible for them to overflow, for example when used in `for` and `while` loops |     1     |
 | [G-2](#G3) | Using storage instead of memory for structs/arrays saves gas.                                                                                         |     1     |
 | [G-3](#G4) | Usage of`uint`s/`int`s smaller than 32 bytes (256 bits) incurs overhead.                                                                              |     4     |
-| [G-4](#G5) | Import only what you need.                                                                                                                            |     9     |
+| [G-4](#G5) | Import only what you need.                                                                                                                            |     8     |
 
 *Total: 4 issues.*
 
@@ -128,7 +128,7 @@ Importing only what is needed is ideal for gas optimization.
 
 Import only what is necessary from file.
 
-##### *Instances (9):*
+##### *Instances (8):*
 
 File: [2023-01-canto-identity/src/AddressRegistry.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/AddressRegistry.sol#L4 )
 
@@ -144,11 +144,6 @@ File: [2023-01-canto-identity/src/CidNFT.sol](https://github.com/code-423n4/2023
 7: import "./SubprotocolRegistry.sol";
 ```
 
-File: [2023-01-canto-identity/src/CidSubprotocolNFT.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidSubprotocolNFT.sol#L4 )
-
-```solidity
-4: import "solmate/tokens/ERC721.sol";
-```
 
 File: [2023-01-canto-identity/src/SubprotocolRegistry.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/SubprotocolRegistry.sol#L4 )
 
