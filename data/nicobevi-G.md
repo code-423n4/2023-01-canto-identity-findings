@@ -166,33 +166,3 @@ Use of unchecked can save gas where computation is known to be overflow/underflo
 
 ## Recommendation
 Add `unchecked { }` and casts to operations that cannot overflow.
-
-
-# [LOW] - ON MINTING, THE `_cidNFTID` used on the `add()` should be the new minted id.
-
-## Description
-The `_cidNFTID` used on the `add()` call should be the new one instead of be open to user input.
-
-## Where
-[/src/CidNFT.sol/#L147-L157](https://github.com/code-423n4/2023-01-canto-identity/blob/bf705da36e5b2adc93d46064a07ad0a21f9391e1/src/CidNFT.sol/#L147-L157)
-
-## Recommendation
-```diff
-    function mint(bytes[] calldata _addList) external {
-+       uint256 newTokenId = numMinted;
-+       unchecked {
-+           ++numMinted;
-+       }        
--        _mint(msg.sender, ++numMinted); // We do not use _safeMint here on purpose. If a contract calls this method, he expects to get an NFT back
-+        _mint(msg.sender, newTokenId); // We do not use _safeMint here on purpose. If a contract calls this method, he expects to get an NFT back
-        bytes4 addSelector = this.add.selector;
-        for (uint256 i = 0; i < _addList.length; ++i) {
-            (
-                bool success, /*bytes memory result*/
-
--           ) = address(this).delegatecall(abi.encodePacked(addSelector, _addList[i]));
-+           ) = address(this).delegatecall(abi.encodePacked(addSelector, newTokenId, _addList[i]));
-            if (!success) revert AddCallAfterMintingFailed(i);
-        }
-    }
-```
