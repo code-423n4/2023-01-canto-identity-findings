@@ -20,4 +20,10 @@ Recommendation: we can check if _user is still the owner of the NFT and revert i
 
 ```
 
+QA2. The ``SubprotocolRegistry`` contract only allows a user to register, in case the wrong information is registered, there is no way to correct it. 
+
+
+When this happens, the only way is to register a new one. This requires one to use a new name, and if the old name is the one that one really like, there is no way to get that name back.
+
+Recommendation: alllow a registered user to update other information other than the ``name`` and owner address. 
 
