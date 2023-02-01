@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "Ruhum",
+  "risk": "2",
+  "title": "`CidNFT.add()` doesn't fail if caller uses unknown association type",
+  "issueId": 16,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/16"
+}
