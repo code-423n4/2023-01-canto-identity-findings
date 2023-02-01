@@ -26,4 +26,3 @@ The three checks (if statements) for the ``register`` function can be executed f
         subprotocolData.fee = _fee;
 ```
 
-
