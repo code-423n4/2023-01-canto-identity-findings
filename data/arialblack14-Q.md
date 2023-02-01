@@ -9,7 +9,7 @@
 | -------------- | --------------------------------------------------------------------------------- | :---------: |
 | [NC-1](#NC3) | Use scientific notation (e.g.`1e18`) rather than exponentiation (e.g.`10**18`). |     1     |
 | [NC-2](#NC4) | Lines are too long.                                                             |     1     |
-| [NC-3](#NC5) | For modern and more readable code, update import usages.                        |     9     |
+| [NC-3](#NC5) | For modern and more readable code, update import usages.                        |     8     |
 | [NC-4](#NC7) | Use of`bytes.concat()` instead of `abi.encodePacked()`.                         |     2     |
 
 *Total: 7 issues.*
@@ -62,7 +62,7 @@ Solidity code is cleaner in the following way: On the principle that clearer cod
 
 Import like this: `import {contract1 , contract2} from "filename.sol";`
 
-##### *Instances (9):*
+##### *Instances (8):*
 
 File: [2023-01-canto-identity/src/AddressRegistry.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/AddressRegistry.sol#L4 )
 
@@ -76,12 +76,6 @@ File: [2023-01-canto-identity/src/CidNFT.sol](https://github.com/code-423n4/2023
 5: import "solmate/tokens/ERC20.sol";
 6: import "solmate/utils/SafeTransferLib.sol";
 7: import "./SubprotocolRegistry.sol";
-```
-
-File: [2023-01-canto-identity/src/CidSubprotocolNFT.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidSubprotocolNFT.sol#L4 )
-
-```solidity
-4: import "solmate/tokens/ERC721.sol";
 ```
 
 File: [2023-01-canto-identity/src/SubprotocolRegistry.sol](https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/SubprotocolRegistry.sol#L4 )
