@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "hihen",
+  "risk": "2",
+  "title": "AddressRegistry did not handle the case of the transferring of registered CidNFTs",
+  "issueId": 12,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/12"
+}
