@@ -27,3 +27,7 @@ When this happens, the only way is to register a new one. This requires one to u
 
 Recommendation: alllow a registered user to update other information other than the ``name`` and owner address. 
 
+QA3. ``cidFeeWallet`` is defined as immutable, that means even when the wallet is compromised, there is no way to change it. 
+
+Recommendation:  change ``cidFeeWallet`` as a private variable, and add a function to allow the change of ``cidFeeWallet`` by a privileged owner. 
+
