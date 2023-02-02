@@ -71,8 +71,6 @@ The ``add`` function fails to check whether a new NFT added to replace an old on
 
 Recommendation: double check whether the new NFTID to be added is the same as the old NFTID that will be removed. If they are equal, return or revert. 
 
-
-
- 
-
-https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L202
+QA7. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L315-L319
+The last line of the comment is wrong. The correction is
+ "@return subprotocolNFTIDs The ID list of the active NFTs at the queried subprotocol / CID NFT. 0 if it does not exist"
