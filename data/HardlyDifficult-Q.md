@@ -44,6 +44,8 @@ Several addresses are assigned in the contract constructors and assigned to immu
 
 `.isContract()` is referring to the [OZ Address library](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol#L40) or similar implementation.
 
+This is related to the automated finding `[NC-1] Missing checks for address(0) when assigning values to address state variables` but suggests a more aggressive check.
+
 ### getActiveData could exceed gas limits
 
 There's no upper bound on the size of the array which is being [returned in `CidNFT.getActiveData`](https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L319-L322). For both contract consumers and RPC requests, eventually a gas limit would be reached. Different RPC providers have different limits applied to view calls such as this.
