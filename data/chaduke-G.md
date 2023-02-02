@@ -38,6 +38,7 @@ if (
 ```
 
 G4. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L199
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L203-L211
 It is much more gas-saving to replace this line by the following few lines to avoid another function call and the complexity (several if-else statements) in the ``remove()`` function.
 ```javascript
             
@@ -48,6 +49,18 @@ It is much more gas-saving to replace this line by the following few lines to av
                 emit OrderedDataRemoved(_cidNFTID, _subprotocolName, _key, _nftIDToRemove);               
             }
  ```
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L207
+Similarly, it is much more gas-saving to replace this line by the following few lines to avoid another function call and the complexity (several if-else statements) in the ``remove()`` function.
+
+```javascript
+            uint256 _nftIDToRemove = cidData[_cidNFTID][_subprotocolName].primary;
+            if (_nftIDToRemove != 0) {
+                        nftToAdd.safeTransferFrom(address(this), msg.sender, nftIDToRemove );
+                        emit PrimaryDataRemoved(_cidNFTID, _subprotocolName, _nftIDToRemove);
+            }
+```
+
+
 
 G5. Introducing a modifier called ``typeMatch(type)`` can save much gas due to short circuit. The original code will send fees and NFTs first before matching  type, a waste of gas when there is a mismatch. Such refactoring also improves the readability of the ``add`` function. We also perform the zero address check for the owner here. Implementing it using assembly can further save more gas. 
 ```javascript
