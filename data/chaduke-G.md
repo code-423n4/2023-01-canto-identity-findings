@@ -39,7 +39,7 @@ if (
 
 G4. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L199
 https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L203-L211
-It is much more gas-saving to replace this line by the following few lines to avoid another function call and the complexity (several if-else statements) in the ``remove()`` function.
+It is much more gas-saving to replace this line by the following few lines to avoid another function call and the complexity (several if-else statements) in the ``remove()`` function, the unnecessary checks and erasing.
 ```javascript
             
             uint256 _nftIDToRemove = cidData[_cidNFTID][_subprotocolName].ordered[_key] ;
