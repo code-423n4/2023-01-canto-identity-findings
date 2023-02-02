@@ -65,3 +65,14 @@ The NatSpec of the [add](https://github.com/code-423n4/2023-01-canto-identity/bl
 
 Recommendation: add the following to the NatSpec of the ``add`` function:  "A user needs to approve the CidNFT for the transfer of the given NFT ``_nftIDToAdd`` before the calling the add function; otherwise, the add function will revert."
 
+QA6. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L202
+
+The ``add`` function fails to check whether a new NFT added to replace an old one are the same or not, resulting unnecessary NFT transfers and gas and false emits. 
+
+Recommendation: double check whether the new NFTID to be added is the same as the old NFTID that will be removed. If they are equal, return or revert. 
+
+
+
+ 
+
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L202
