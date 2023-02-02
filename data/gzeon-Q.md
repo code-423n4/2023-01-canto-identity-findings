@@ -13,3 +13,12 @@ https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c2
 ```
         ERC721 nftToAdd = ERC721(subprotocolData.nftAddress);
 ```
+
+### Use IERC20 instead of ERC20
+
+It's better to use the interface instead of the interface of a specific implementation
+
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L129
+```
+        note = ERC20(_noteContract);
+```
