@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "wait",
+  "risk": "2",
+  "title": "Inactive subprotocol NFT should not be added to CidNFT",
+  "issueId": 52,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/52"
+}
