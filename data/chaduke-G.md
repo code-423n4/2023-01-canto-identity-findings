@@ -62,16 +62,25 @@ Similarly, it is much more gas-saving to replace this line by the following few 
 
 
 
-G5. Introducing a modifier called ``typeMatch(type)`` can save much gas due to short circuit. The original code will send fees and NFTs first before matching  type, a waste of gas when there is a mismatch. Such refactoring also improves the readability of the ``add`` function. We also perform the zero address check for the owner here. Implementing it using assembly can further save more gas. 
+G5. Introducing a modifier called ``authorziedAndTypeMatch()`` to perform  authorization and type match checks  can save much gas due to short circuit. The original code will send fees and NFTs first before matching  type, a waste of gas when there is a mismatch. Such refactoring also improves the readability of the ``add`` function. We also perform the zero address check for the owner here. Implementing it using assembly can further save more gas. 
 ```javascript
-modifier typeMatch(AssociationType _type, string calldata _subprotocolName) {
+modifier authorziedAndTypeMatch()(AssociationType _type, string calldata _subprotocolName) {
       SubprotocolRegistry.SubprotocolData memory subprotocolData = subprotocolRegistry.getSubprotocol(
             _subprotocolName
         );
-      if (subprotocolOwner == address(0)) revert SubprotocolDoesNotExist(_subprotocolName);
+      address subprotocolOwner = subprotocolData.owner;
+      if (subprotocolOwner == address(0)) revert SubprotocolDoesNotExist(_subprotocolName); // check 1
+      
+      address cidNFTOwner = ownerOf[_cidNFTID];
+        if (
+            cidNFTOwner != msg.sender &&
+            getApproved[_cidNFTID] != msg.sender &&
+            !isApprovedForAll[cidNFTOwner][msg.sender]
+        ) revert NotAuthorizedForCIDNFT(msg.sender, _cidNFTID, cidNFTOwner); // check 2
+
       if(!(_type == AssociationType.ORDERED && subprotocolData.ordered || 
          _type == AssociationType.PRIMARY && subprotocolData.primary || 
-         _type == AssociationType.ACTIVE && subprotocolData.active)
+         _type == AssociationType.ACTIVE && subprotocolData.active)                // check 3
       ) {
                revert AssociationTypeNotSupportedForSubprotocol(_type, _subprotocolName);
       }
@@ -85,6 +94,16 @@ function add(
         AssociationType _type
     ) typeMatch(_type, _subprotocolName) external
 ```
+G6. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L224-L225
+```javascript
+                activeData.values.push(_nftIDToAdd);
+                activeData.positions[_nftIDToAdd] = lengthBeforeAddition + 1;
+```
+Exchanging the order of these two lines, we can avoid the "+1" operation: 
 
+```javascript
+               activeData.positions[_nftIDToAdd] = lengthBeforeAddition + 1;  
+               activeData.values.push(_nftIDToAdd);
+```
 
 
