@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "HardlyDifficult",
+  "risk": "2",
+  "title": "Safe transfer may prevent `CidNFT.remove` calls",
+  "issueId": 74,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/74"
+}
