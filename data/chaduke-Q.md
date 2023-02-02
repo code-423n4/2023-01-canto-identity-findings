@@ -31,3 +31,32 @@ QA3. ``cidFeeWallet`` is defined as immutable, that means even when the wallet i
 
 Recommendation:  change ``cidFeeWallet`` as a private variable, and add a function to allow the change of ``cidFeeWallet`` by a privileged owner. 
 
+QA4. The ``tokenURL()`` implementation does not conform exactly to [eip-721](https://eips.ethereum.org/EIPS/eip-721):
+```
+ function tokenURI(uint256 _id) public view override returns (string) {
+        if (ownerOf[_id] == address(0))
+            // According to ERC721, this revert for non-existing tokens is required
+            revert TokenNotMinted(_id);
+        return string(abi.encodePacked(baseURI, _id, ".json"));
+    }
+```
+1) It should revert only when the NFT is not valid, not because when the owner is zero. This is because a valid NFT might be burned to the zero address.  For example, one likes to implement a fully permissionless subprotcol, and sending the NFT to the zero address might be the way to do it. This does not mean the NFT is invalid. All the subprotocal data is still valid. 
+
+2)  The function should be external instead of public, according to EIP-721. 
+
+3) The return value should be just ``string`` instead of ``memory string``. 
+
+Recommendation:
+```diff
+
+- function tokenURI(uint256 _id)  public view override returns (string memory) {
++ function tokenURI(uint256 _id) external  view override returns (string memory) {
+
+-       if (ownerOf[_id] == address(0))
++       if(_id >=1 && _id <= numMinted)
+            // According to ERC721, this revert for non-existing tokens is required
+            revert TokenNotMinted(_id);
+        return string(abi.encodePacked(baseURI, _id, ".json"));
+    }
+```
+
