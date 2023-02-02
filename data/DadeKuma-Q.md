@@ -1,25 +1,53 @@
 ## Summary
 ### Low-Risk Issues
-|Number|Title|Context|
+|ID|Title|Context|
 |:--:|:-------|:--:|
 |[L-01]| Missing zero address check | 1 |
 
 Total issues: 1
 
 ### Non-Critical Issues
-|Number|Title|Context|
+|ID|Title|Context|
 |:--:|:-------|:--:|
 |[N-01]| Use a modifier to avoid duplicate code to check the sender | 1 |
 |[N-02]| Inconsistent function visibility order | 1 |
-|[N-03]| Lock pragmas to a specific compiler version | 1 |
+|[N-03]| Lock pragmas to a specific compiler version | 4 |
 |[N-04]| Missing param in natspec in `AddressRegistry` | 1 |
-|[N-05]| Add explicit exports | 1 |
+|[N-05]| Add explicit exports | 4 |
 |[N-06]| Showing the full-length numbers in comments increase readability | 1 |
 
 Total issues: 6
 
 ## Low Risk
 ### [L-01] Missing zero address check 
+
+**Context**
+
+```solidity
+5 results - 3 files
+
+
+src/AddressRegistry.sol:
+
+37: cidNFT = _cidNFT;
+
+
+src/CidNFT.sol:
+
+128: cidFeeWallet = _cidFeeWallet;
+129: note = ERC20(_noteContract);
+
+
+src/SubprotocolRegistry.sol:
+
+66: note = ERC20(_noteContract);
+67: cidFeeWallet = _cidFeeWallet;
+
+```
+
+**Description**
+
+It's important to do a zero address check for addresses to avoid wasting gas to redeploy the smart contract.
 
 ## Non-Critical
 
@@ -28,7 +56,7 @@ Total issues: 6
 **Context**
 
 ```solidity
-File: src/CidNFT.sol
+src/CidNFT.sol
 
 177: address cidNFTOwner = ownerOf[_cidNFTID];
 178: if (
@@ -51,6 +79,12 @@ There is some duplicated code in both `add` and `remove` function in `CidNFT.sol
 
 ### [NC-02] Inconsistent function visibility order
 
+**Description**
+
+Ordering the function in terms of visibility helps readers identify and study the contract functions, but there are contracts in the project that do not comply with this best practice (`CidNFT.sol`).
+
+Consider reordering the functions, by grouping them by visibility `[public, external, internal, private]`, and type `[pure, constant, view, payable]`.
+
 ### [NC-03] Lock pragmas to a specific compiler version
 
 **Context**
@@ -59,15 +93,22 @@ There is some duplicated code in both `add` and `remove` function in `CidNFT.sol
 5 results - 4 files
 
 src/AddressRegistry.sol:
+
 2: pragma solidity >=0.8.0;
+
 
 src/CidNFT.sol:
+
 2: pragma solidity >=0.8.0;
+
 
 src/CidSubprotocolNFT.sol:
+
 2: pragma solidity >=0.8.0;
 
+
 src/SubprotocolRegistry.sol:
+
 2: pragma solidity >=0.8.0;
 
 ```
@@ -82,7 +123,7 @@ Pragma statements are appropriate when the contract is a library that is intende
 **Context**
 
 ```solidity
-File: src/AddressRegistry.sol
+src/AddressRegistry.sol
 
 40: /// @notice Register a CID NFT to the address of the caller. NFT has to be owned by the caller
 41: /// @dev Will overwrite existing registration if any exists
@@ -130,12 +171,12 @@ src/AddressRegistry.sol
 
 Instead of importing everything from a file, it's better to use the following notation to improve readability:
 
-`import {Contract} from "contract.sol"`
+`import {Contract} from "contract.sol";`
 
 ### [NC-06] Showing the full-length numbers in comments increase readability
 
 ```diff
-File: src/SubprotocolRegistry.sol
+src/SubprotocolRegistry.sol
 
 - 17:      uint256 public constant REGISTER_FEE = 100 * 10**18;
 + 17:      uint256 public constant REGISTER_FEE = 100 * 10**18; // 100_000_000_000_000_000_000
