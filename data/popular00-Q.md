@@ -32,3 +32,4 @@
     ```
 - [NC-2] `struct SubprotocolData` in `SubprotocolRegistry.sol` comments indicate all data fits in one storage slot, however the struct as written will be packed into two slots
 - [NC-3] Code section labeling is inconsistent - some sections include the solmate section delimiter while others don't
+- [NC-4] There is no function to set `baseURI` in `CidNFT.sol`; `baseURI` could either be made immutable or functionality added to change the `baseURI` after contract creation
