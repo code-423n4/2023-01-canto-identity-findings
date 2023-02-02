@@ -59,3 +59,9 @@ Recommendation:
     }
 ```
 
+QA5. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L159-L165
+
+The NatSpec of the [add](https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L165-L171) function fails to have the information that auser needs to approve the CidNFT for the transfer of the given NFT ``_nftIDToAdd`` before the calling the ``add`` function. This is important information for improving user experience. 
+
+Recommendation: add the following to the NatSpec of the ``add`` function:  "A user needs to approve the CidNFT for the transfer of the given NFT ``_nftIDToAdd`` before the calling the add function; otherwise, the add function will revert."
+
