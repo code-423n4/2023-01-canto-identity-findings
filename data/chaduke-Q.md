@@ -50,7 +50,7 @@ Recommendation:
 ```diff
 
 - function tokenURI(uint256 _id)  public view override returns (string memory) {
-+ function tokenURI(uint256 _id) external  view override returns (string memory) {
++ function tokenURI(uint256 _id) external  view override returns (string) {
 
 -       if (ownerOf[_id] == address(0))
 +       if(_id >=1 && _id <= numMinted)
