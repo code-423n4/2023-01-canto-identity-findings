@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "wait",
+  "risk": "2",
+  "title": "SubprotocolRegistry is vulnerable to malicious names",
+  "issueId": 53,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/53"
+}
