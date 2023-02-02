@@ -64,7 +64,7 @@ Similarly, it is much more gas-saving to replace this line by the following few 
 
 G5. Introducing a modifier called ``authorziedAndTypeMatch()`` to perform  authorization and type match checks  can save much gas due to short circuit. The original code will send fees and NFTs first before matching  type, a waste of gas when there is a mismatch. Such refactoring also improves the readability of the ``add`` function. We also perform the zero address check for the owner here. Implementing it using assembly can further save more gas. 
 ```javascript
-modifier authorziedAndTypeMatch()(AssociationType _type, string calldata _subprotocolName) {
+modifier authorziedAndTypeMatch(AssociationType _type, string calldata _subprotocolName) {
       SubprotocolRegistry.SubprotocolData memory subprotocolData = subprotocolRegistry.getSubprotocol(
             _subprotocolName
         );
@@ -92,7 +92,7 @@ function add(
         uint256 _key,
         uint256 _nftIDToAdd,
         AssociationType _type
-    ) typeMatch(_type, _subprotocolName) external
+    ) authorziedAndTypeMatch(_type, _subprotocolName) external
 ```
 G6. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L224-L225
 ```javascript
