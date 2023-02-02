@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "paspe",
+  "risk": "2",
+  "title": "Use abi.encode instead of abi.encodePacked to prevent data collisions for object hashing",
+  "issueId": 49,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/49"
+}
