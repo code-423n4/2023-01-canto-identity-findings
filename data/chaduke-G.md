@@ -26,3 +26,15 @@ The three checks (if statements) for the ``register`` function can be executed f
         subprotocolData.fee = _fee;
 ```
 
+G3. https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L178-L183
+These two if-statements can get executed right in the beginning to short-circuit and save gas.
+```
+if (
+            cidNFTOwner != msg.sender &&
+            getApproved[_cidNFTID] != msg.sender &&
+            !isApprovedForAll[cidNFTOwner][msg.sender]
+        ) revert NotAuthorizedForCIDNFT(msg.sender, _cidNFTID, cidNFTOwner);
+        if (_nftIDToAdd == 0) revert NFTIDZeroDisallowedForSubprotocols(); // ID 0 is disallowed in sub
+```
+
+
