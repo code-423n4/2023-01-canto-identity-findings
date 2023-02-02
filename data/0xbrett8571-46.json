@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Unrestricted Access to Contract's destroy Function Vulnerability",
+  "issueId": 46,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/46"
+}
