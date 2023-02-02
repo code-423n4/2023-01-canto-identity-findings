@@ -44,13 +44,12 @@ QA4. The ``tokenURL()`` implementation does not conform exactly to [eip-721](htt
 
 2)  The function should be external instead of public, according to EIP-721. 
 
-3) The return value should be just ``string`` instead of ``memory string``. 
 
 Recommendation:
 ```diff
 
 - function tokenURI(uint256 _id)  public view override returns (string memory) {
-+ function tokenURI(uint256 _id) external  view override returns (string) {
++ function tokenURI(uint256 _id) external  view override returns (string memory) {
 
 -       if (ownerOf[_id] == address(0))
 +       if(_id >=1 && _id <= numMinted)
