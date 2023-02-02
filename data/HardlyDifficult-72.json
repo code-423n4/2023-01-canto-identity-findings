@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "HardlyDifficult",
+  "risk": "3",
+  "title": "`CidNFT.onERC721Received` allows unaccounted for `safeTransferFrom` calls",
+  "issueId": 72,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/72"
+}
