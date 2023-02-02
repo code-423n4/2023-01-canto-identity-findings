@@ -9,7 +9,7 @@
 | [L-04]  | Using `>/>=` without specifying an upper bound is unsafe                  | 3             |
 
 | Total Non-Critical issues |
-|---------------------------|
+|----------------------------|
 
 | Risk    | Issues Details                                                            | Number        |
 |---------|---------------------------------------------------------------------------|---------------|
