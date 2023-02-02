@@ -9,9 +9,8 @@
 | [LOW&#x2011;4](#LOW&#x2011;4) | Missing parameter validation in `constructor` | 6 |
 | [LOW&#x2011;5](#LOW&#x2011;5) | Protect your NFT from copying in POW forks | 1 |
 | [LOW&#x2011;6](#LOW&#x2011;6) | Solmate's SafeTransferLib doesn't check whether the ERC20 contract exists | 2 |
-| [LOW&#x2011;7](#LOW&#x2011;7) | Unbounded loop | 1 |
 
-Total: 20 contexts over 7 issues
+Total: 19 contexts over 6 issues
 
 ### Non-critical Issues
 | |Issue|Contexts|
