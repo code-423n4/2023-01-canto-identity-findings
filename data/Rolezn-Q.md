@@ -5,12 +5,11 @@
 |-|:-|:-:|
 | [LOW&#x2011;1](#LOW&#x2011;1) | Add to `blacklist` function | 8 |
 | [LOW&#x2011;2](#LOW&#x2011;2) | Possible rounding issue | 1 |
-| [LOW&#x2011;3](#LOW&#x2011;3) | Use `_safeMint` instead of `_mint` | 1 |
-| [LOW&#x2011;4](#LOW&#x2011;4) | Missing parameter validation in `constructor` | 6 |
-| [LOW&#x2011;5](#LOW&#x2011;5) | Protect your NFT from copying in POW forks | 1 |
-| [LOW&#x2011;6](#LOW&#x2011;6) | Solmate's SafeTransferLib doesn't check whether the ERC20 contract exists | 2 |
+| [LOW&#x2011;3](#LOW&#x2011;3) | Missing parameter validation in `constructor` | 6 |
+| [LOW&#x2011;4](#LOW&#x2011;4) | Protect your NFT from copying in POW forks | 1 |
+| [LOW&#x2011;5](#LOW&#x2011;5) | Solmate's SafeTransferLib doesn't check whether the ERC20 contract exists | 2 |
 
-Total: 19 contexts over 6 issues
+Total: 18 contexts over 56 issues
 
 ### Non-critical Issues
 | |Issue|Contexts|
@@ -69,32 +68,7 @@ https://github.com/code-423n4/2023-01-canto-identity/tree/main/src/CidNFT.sol#L1
 
 
 
-
-
-
-### <a href="#Summary">[LOW&#x2011;3]</a><a name="LOW&#x2011;3"> Use `_safeMint` instead of `_mint`
-
-According to openzepplin's ERC721, the use of `_mint` is discouraged, use _safeMint whenever possible.
-https://docs.openzeppelin.com/contracts/3.x/api/token/erc721#ERC721-_mint-address-uint256-
-
-#### <ins>Proof Of Concept</ins>
-
-
-```solidity
-148: _mint(msg.sender, ++numMinted);
-```
-
-https://github.com/code-423n4/2023-01-canto-identity/tree/main/src/CidNFT.sol#L148
-
-
-
-#### <ins>Recommended Mitigation Steps</ins>
-
-Use `_safeMint` whenever possible instead of `_mint`
-
-
-
-### <a href="#Summary">[LOW&#x2011;4]</a><a name="LOW&#x2011;4"> Missing parameter validation in `constructor`
+### <a href="#Summary">[LOW&#x2011;3]</a><a name="LOW&#x2011;3"> Missing parameter validation in `constructor`
 
 Some parameters of constructors are not checked for invalid values.
 
@@ -134,7 +108,7 @@ Validate the parameters.
 
 
 
-### <a href="#Summary">[LOW&#x2011;5]</a><a name="LOW&#x2011;5"> Protect your NFT from copying in POW forks
+### <a href="#Summary">[LOW&#x2011;4]</a><a name="LOW&#x2011;4"> Protect your NFT from copying in POW forks
 Ethereum has performed the long-awaited "merge" that will dramatically reduce the environmental impact of the network
 
 There may be forked versions of Ethereum, which could cause confusion and lead to scams as duplicated NFT assets enter the market.
@@ -172,7 +146,7 @@ if(block.chainid != 1) {
 
 
 
-### <a href="#Summary">[LOW&#x2011;6]</a><a name="LOW&#x2011;6"> Solmate's SafeTransferLib doesn't check whether the ERC20 contract exists
+### <a href="#Summary">[LOW&#x2011;5]</a><a name="LOW&#x2011;5"> Solmate's SafeTransferLib doesn't check whether the ERC20 contract exists
 
 Solmate's SafeTransferLib, which is often used to interact with non-compliant/unsafe ERC20 tokens, does not check whether the ERC20 contract exists. The following code will not revert in case the token doesn't exist (yet).
 
