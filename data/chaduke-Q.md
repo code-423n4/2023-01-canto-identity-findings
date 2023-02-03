@@ -83,3 +83,34 @@ https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c2
 
 https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/SubprotocolRegistry.sol#L2
 
+QA9. The ``add`` function requires the user to give approval to the ``CidNFT`` contract to transfer the protocol fee (note) to the ``cidFeeWallet`` and the subprotocol owner. Other, the function ``add()`` will revert. It is important to document this in the NatSpec of the ``add()`` function.
+
+[https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L190-L194](https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L190-L194)
+
+```
+if (subprotocolFee != 0) {
+            uint256 cidFee = (subprotocolFee * CID_FEE_BPS) / 10_000;
+            SafeTransferLib.safeTransferFrom(note, msg.sender, cidFeeWallet, cidFee);
+            SafeTransferLib.safeTransferFrom(note, msg.sender, subprotocolOwner, subprotocolFee - cidFee);
+        }
+```
+
+QA10.  Both the ``add()`` and ``remove()`` functions might remove NFTs from the ``CidNFT`` contract and send them to the msg.sender:
+
+```
+nftToRemove.safeTransferFrom(address(this), msg.sender, _nftIDToRemove);
+```
+
+The safeTransferFrom() function will call a callback function of the caller as follows:
+
+```
+ require(
+            to.code.length == 0 ||
+                ERC721TokenReceiver(to).onERC721Received(msg.sender, from, id, "") ==
+                ERC721TokenReceiver.onERC721Received.selector,
+            "UNSAFE_RECIPIENT"
+        );
+```
+
+Therefore, reentrance attack is possible. Although this audit has not found a reentrancy attack scenario, for safety issue, it is still advisable to use openZeppelin's ReentrancyGuaud to eliminate future concerns: 
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol
