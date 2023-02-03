@@ -1,0 +1,1 @@
+SubprotocolData is defined with the same struct name in both CidNFT.sol and SubprotocolRegistry.sol. It can be confusing in CidNFT.sol Please change any one so that it’s easier to read.
