@@ -68,3 +68,13 @@ Solidity version 0.8+ checks for overflow/underflow by default, if overflow/unde
 *There are 2 instances of this issue*
 https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L148
 https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L150
+
+---
+## [G-05] Setting the constructor to payable 
+
+Making the constructor to payable can eliminate the check for `msg.value`, saving 13 gas on deployment
+
+*There are 3 instances of this issue*
+https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/SubprotocolRegistry.sol#L65
+https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/AddressRegistry.sol#L36
+https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L119
