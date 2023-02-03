@@ -1,0 +1,1 @@
+When user call register and had registration before, function should also emit event CIDNFTRemoved https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/AddressRegistry.sol#L42
