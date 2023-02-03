@@ -13,7 +13,7 @@ Total issues: 1
 |[N-02]| Inconsistent function visibility order | 1 |
 |[N-03]| Lock pragmas to a specific compiler version | 4 |
 |[N-04]| Missing param in natspec in `AddressRegistry` | 1 |
-|[N-05]| Add explicit exports | 4 |
+|[N-05]| Missing explicit exports | 4 |
 |[N-06]| Showing the full-length numbers in comments increase readability | 1 |
 
 Total issues: 6
@@ -79,9 +79,13 @@ There is some duplicated code in both `add` and `remove` function in `CidNFT.sol
 
 ### [NC-02] Inconsistent function visibility order
 
+**Context**
+
+`src/CidNFT.sol`
+
 **Description**
 
-Ordering the function in terms of visibility helps readers identify and study the contract functions, but there are contracts in the project that do not comply with this best practice (`CidNFT.sol`).
+Ordering the function in terms of visibility helps readers identify and study the contract functions, but there are contracts in the project that do not comply with this best practice.
 
 Consider reordering the functions, by grouping them by visibility `[public, external, internal, private]`, and type `[pure, constant, view, payable]`.
 
@@ -136,7 +140,7 @@ src/AddressRegistry.sol
 The `register` function is missing the NAT parameter `_cidNFTID`
 
 
-### [NC-05] Add explicit exports
+### [NC-05] Missing explicit exports
 **Context**
 
 ```solidity
@@ -175,6 +179,7 @@ Instead of importing everything from a file, it's better to use the following no
 
 ### [NC-06] Showing the full-length numbers in comments increase readability
 
+**Context**
 ```diff
 src/SubprotocolRegistry.sol
 
