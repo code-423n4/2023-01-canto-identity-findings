@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "shenwilly",
+  "risk": "2",
+  "title": "Multiple addresses can point to the same `cidNFTID`",
+  "issueId": 116,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/116"
+}
