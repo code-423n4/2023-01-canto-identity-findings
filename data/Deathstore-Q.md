@@ -15,6 +15,8 @@ as possible variants:
 + increase fee for low fee protocol(for example 50%(yes, it's still problem with fee as 4 note)
 
 as an example some subprotocols can be used in big projects, that won't be happy to pay for each transatcion to cidFeeWallet. And they would collect their 9 note for each transaction without fee  or set to 0  and coolect fees on their own)
+
+or if you don't care about this case, it's better to just divide by 10, and not multiplying at all (saves gas)
 ### NOT USE SAFE
 ```
 @@ -261,13 +258,13 @@ contract CidNFT is ERC721, ERC721TokenReceiver {
