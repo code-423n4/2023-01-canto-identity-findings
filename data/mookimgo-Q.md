@@ -74,3 +74,14 @@ Suggestion: to avoid misunderstanding, change to:
     event PrimaryDataRemoved(uint256 indexed cidNFTID, string indexed subprotocolName);
 ```
 
+----
+
+#4. Inaccurate docs about getActiveData function's @return docs
+
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L318
+
+getActiveData's return data is uint256[], which is an array of uint256 values (NFT IDs).
+
+This comment should be modified.
+
+
