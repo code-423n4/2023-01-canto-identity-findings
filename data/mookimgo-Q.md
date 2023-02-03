@@ -22,3 +22,34 @@ Suggestion: removed `indexed` keyword, change to:
         uint96 fee
     );
 ```
+
+----
+
+# 2. user will lost his _nftIDToAdd if wrong _type is passed to add function
+
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L165
+
+`add` function is missing a last `else` branch to revert if `_type` parameter is not valid (not in ORDERED, PRIMARY and ACTIVE)
+
+In this case, NFT is transfered to the CidNFT contract, and fee paied (if subprotocolFee>0), while cidData do not get updated.
+
+Suggestion: add an else branch like:
+
+```
+if (_type == AssociationType.ORDERED) {
+   ...
+} else if (_type == AssociationType.PRIMARY) {
+   ...
+} else if (_type == AssociationType.ACTIVE) {
+   ...
+} else{
+   revert TypeInvalid(_type);
+}
+```
+
+and add an error:
+
+```
+error TypeInvalid(AssociationType type);
+```
+
