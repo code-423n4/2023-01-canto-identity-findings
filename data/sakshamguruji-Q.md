@@ -20,6 +20,18 @@ seems incorrect as it is only sending the fee when `subprotocolFee != 0` which i
 The comment here https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/SubprotocolRegistry.sol#L74 says primary association
 is when a string key is mapped to a zero or one value , this is incorrect (as seen here https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L50 , primary is a uint) as primary is just one NFT ID.
 
+## VIOLATION OF CIE PATTERN
+
+###Description:
+
+The pattern here https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/SubprotocolRegistry.sol#L87-L94 violated the CIE pattern
+as we are performing the transfer prior to the checks .
+If $NOTE in future supports any hooks this might become a case for reentrancy too as there are no reentrancy guards too.
+
+Remediation:
+
+Perform the transfer after the checks.
+
 ## USE OF BYTES.CONCAT() INSTEAD OF ABI.ENCODEPACKED(,)
 
 ### Description:
