@@ -28,6 +28,10 @@ The pattern here https://github.com/code-423n4/2023-01-canto-identity/blob/main/
 as we are performing the transfer prior to the checks .
 If $NOTE in future supports any hooks this might become a case for reentrancy too as there are no reentrancy guards too.
 
+There is one more occasion where this happens  , here https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L187-L227
+we transfer the nft first and then some states/mappings are updates , should have a reentrancy guard too just in case if conditions become favourable 
+for a reeentrancy.
+
 Remediation:
 
 Perform the transfer after the checks.
