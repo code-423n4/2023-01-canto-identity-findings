@@ -176,7 +176,7 @@ rest of the instances:
 
 The [Checks Effects Interactions Pattern](https://fravoll.github.io/solidity-patterns/checks_effects_interactions.html) recommends executing external calls after state changes to prevent reentrancy bugs.
 
-For example:
+For example, the external call from `SafeTransferLib` is executed before state changes and checks:
 
 ```diff
     function register(
