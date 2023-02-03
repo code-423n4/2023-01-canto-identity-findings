@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "0xmuxyz",
+  "risk": "3",
+  "title": "The `cidFee` will be `0` if small amount is set as a `subprotocolFee`, which lead to the loss of profits that is supposed to be earned as fee",
+  "issueId": 122,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/122"
+}
