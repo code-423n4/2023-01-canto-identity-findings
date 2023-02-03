@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "adriro",
+  "risk": "2",
+  "title": "Fee recipient addresses can't be changed in the protocol",
+  "issueId": 161,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/161"
+}
