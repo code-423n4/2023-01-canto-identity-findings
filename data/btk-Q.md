@@ -1,5 +1,5 @@
 | Total Low issues |
-|-------------------|
+|------------------|
 
 | Risk    | Issues Details                                                            | Number        |
 |---------|---------------------------------------------------------------------------|---------------|
@@ -9,7 +9,7 @@
 | [L-04]  | Using `>/>=` without specifying an upper bound is unsafe                  | 3             |
 
 | Total Non-Critical issues |
-|----------------------------|
+|---------------------------|
 
 | Risk    | Issues Details                                                            | Number        |
 |---------|---------------------------------------------------------------------------|---------------|
@@ -358,10 +358,6 @@ The `delete` keyword more closely matches the semantics of what is being done, a
 The highest tier of smart contract behavior assurance is formal mathematical verification. All assertions that are made are guaranteed to be true across all inputs → The quality of your asserts is the quality of your verification.
 
 > Ref: https://twitter.com/0xOwenThurm/status/1614359896350425088?t=dbG9gHFigBX85Rv29lOjIQ&s=19
-
-#### Lines of code 
-
-- [All Contracts](https://github.com/code-423n4/2023-01-canto-identity/tree/main/src)
 
 #### Recommended Mitigation Steps
 
