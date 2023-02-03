@@ -53,3 +53,24 @@ and add an error:
 error TypeInvalid(AssociationType type);
 ```
 
+----
+
+# 3. remove _nftIDToRemove from event OrderedDataRemoved and PrimaryDataRemoved
+
+As the docs said _nftIDToRemove is only used in AssociationType ACTIVE
+https://github.com/code-423n4/2023-01-canto-identity/blob/dff8e74c54471f5f3b84c217848234d474477d82/src/CidNFT.sol#L235
+
+
+So there's no need to emit event including `_nftIDToRemove` parameter for ORDERED and PRIMARY
+
+Suggestion: to avoid misunderstanding, change to:
+
+```
+    event OrderedDataRemoved(
+        uint256 indexed cidNFTID,
+        string indexed subprotocolName,
+        uint256 indexed key
+    );
+    event PrimaryDataRemoved(uint256 indexed cidNFTID, string indexed subprotocolName);
+```
+
