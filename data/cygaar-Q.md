@@ -1,0 +1,1 @@
+This delegatecall should prepend the `_cidNFTID` to the calldata: https://github.com/code-423n4/2023-01-canto-identity/blob/main/src/CidNFT.sol#L154. Right now the mint function assumes the right `_cidNFTID` will be included in `_addList`, however if more than 1 mint txn is submitted in the same block, one of the calls will fail as it will have the wrong `_cidNFTID`.
