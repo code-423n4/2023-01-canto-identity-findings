@@ -1,0 +1,8 @@
+{
+  "contest": 212,
+  "handle": "hihen",
+  "risk": "2",
+  "title": "Adding NFTS with AssociationType ORDERED or PRIMARY may cause overwriting",
+  "issueId": 187,
+  "issueUrl": "https://github.com/code-423n4/2023-01-canto-identity-findings/issues/187"
+}
